@@ -1,43 +1,60 @@
-# react-native-checkout-payment
+# @wedoogift/react-native-checkout-payment
+
+Provides a react-native implementation of the Checkout.com official 
+Android and iOS SDK. This library uses both the native tools provided
+by Checkout.com and regroup them in the same interface so that it can
+be used seamlessly in React Native
+
+## React Native version
+
+The latest version currently supports React Native **0.60.x** on 
+**Android** and **iOS**.
+
+_It provides Typescript declaration file so it can be easily used with Typescript._
 
 ## Getting started
 
-`$ npm install react-native-checkout-payment --save`
+`$ yarn add @wedoogift/react-native-checkout-payment`
 
-### Mostly automatic installation
-
-`$ react-native link react-native-checkout-payment`
-
-### Manual installation
-
-
-#### iOS
-
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-checkout-payment` and add `CheckoutPayment.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libCheckoutPayment.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
-
-#### Android
-
-1. Open up `android/app/src/main/java/[...]/MainApplication.java`
-  - Add `import com.wedoogift.rncheckout.CheckoutPaymentPackage;` to the imports at the top of the file
-  - Add `new CheckoutPaymentPackage()` to the list returned by the `getPackages()` method
-2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-checkout-payment'
-  	project(':react-native-checkout-payment').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-checkout-payment/android')
-  	```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
-      compile project(':react-native-checkout-payment')
-  	```
-
+The linking is done automatically since React Native 0.60 (via Gradle or Pods).
 
 ## Usage
-```javascript
-import CheckoutPayment from 'react-native-checkout-payment';
 
-// TODO: What to do with the module?
-CheckoutPayment;
+Before doing anything with the module, **you must 
+initialize it** with your public key and the environment type:
+
+```javascript
+import CheckoutModule from 'react-native-checkout-payment';
+
+CheckoutModule.initialize('ck_test_foobar', 'sandbox') 
+    // or 'live' instead of 'sandbox' for production env.
+    .then(() => {
+        console.log('Initialization is done.');
+    });
 ```
+
+Then, you can start generating card tokens to make payments:
+```javascript
+import CheckoutModule from 'react-native-checkout-payment';
+
+CheckoutModule.generateToken({
+    card: '4242424242424242',
+    name: 'Card Owner',
+    expiryMonth: '06',
+    expiryYear: '25',
+    cvv: '100'
+}) // or 'live' for production env.
+    .then((result) => {
+        console.log('Card token is ' + result.id);
+        // See CardTokenisationResponse in index.ts or index.d.ts 
+        // to see the data structure of the result.
+    })
+    .catch((error) => {
+        console.warn('Failed because: ' + error.message);
+    });
+```
+
+The resulting card token can be given to your own backend for use 
+with the Checkout payment API.
+
+Checkout documentation: https://docs.checkout.com/

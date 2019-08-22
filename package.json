@@ -13,7 +13,11 @@
     "baseUrl": "https://github.com/wedoogift/react-native-checkout-payment"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "checkout",
+    "checkout.com",
+    "android",
+    "ios"
   ],
   "author": {
     "name": "Wedoogift",
