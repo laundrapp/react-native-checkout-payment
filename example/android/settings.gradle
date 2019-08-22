@@ -1,0 +1,5 @@
+rootProject.name = 'example'
+include ':react-native-checkout-payment'
+project(':react-native-checkout-payment').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-checkout-payment/android')
+
+include ':app'

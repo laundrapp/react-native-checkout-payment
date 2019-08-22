@@ -1,0 +1,36 @@
+{
+  "name": "@wedoogift/react-native-checkout-payment",
+  "title": "React Native Checkout Payment",
+  "version": "0.9.5",
+  "description": "React native implementation of the Checkout.com Android and iOS SDK for create credit card token for use with their payment solution.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wedoogift/react-native-checkout-payment.git",
+    "baseUrl": "https://github.com/wedoogift/react-native-checkout-payment"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": {
+    "name": "Wedoogift",
+    "email": "victor.levasseur@wedoogift.com"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react": "^16.8.3",
+    "react-native": ">=0.60.4"
+  },
+  "devDependencies": {
+    "@types/react-native": "^0.60.7",
+    "prettier": "^1.18.2",
+    "react": "^16.8.3",
+    "react-native": "^0.60.4",
+    "typescript": "^3.5.3"
+  }
+}
