@@ -1,7 +1,7 @@
 {
   "name": "@wedoogift/react-native-checkout-payment",
   "title": "React Native Checkout Payment",
-  "version": "0.9.5",
+  "version": "0.9.7",
   "description": "React native implementation of the Checkout.com Android and iOS SDK for create credit card token for use with their payment solution.",
   "main": "index.js",
   "scripts": {
