@@ -7,7 +7,7 @@ export enum CheckoutEnvironment {
 
 export interface CardTokenisationRequest {
   card: string;
-  name: string;
+  name?: string;
   expiryMonth: string; // With always two digits.
   expiryYear: string; // With always two digits.
   cvv: string;

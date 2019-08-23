@@ -111,7 +111,7 @@ public class CheckoutModuleImpl extends ReactContextBaseJavaModule implements Ch
         }
 
         if (!data.hasKey(CARD_NUMBERS_KEY) || !data.hasKey(CARD_EXPIRATION_CVV)
-                || !data.hasKey(CARD_NAME) || !data.hasKey(CARD_EXPIRATION_MONTH)
+                || !data.hasKey(CARD_EXPIRATION_MONTH)
                 || !data.hasKey(CARD_EXPIRATION_YEAR)) {
             returnValue.reject(new IllegalArgumentException(
                     "missing fields for the card token generation."));
@@ -120,7 +120,7 @@ public class CheckoutModuleImpl extends ReactContextBaseJavaModule implements Ch
         pendingTokenisationPromise = returnValue;
         checkoutClient.generateToken(new CardTokenisationRequest(
                 data.getString(CARD_NUMBERS_KEY),
-                data.getString(CARD_NAME),
+                data.hasKey(CARD_NAME) ? data.getString(CARD_NAME) : null,
                 data.getString(CARD_EXPIRATION_MONTH),
                 data.getString(CARD_EXPIRATION_YEAR),
                 data.getString(CARD_EXPIRATION_CVV)

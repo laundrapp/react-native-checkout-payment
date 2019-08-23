@@ -43,14 +43,13 @@ class CheckoutModule: NSObject {
     @objc(generateToken:resolve:reject:)
     func generateToken(data: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         if (checkoutApi != nil) {
-            let card: String? = data.value(forKey: "card") as! String?;
-            let name: String? = data.value(forKey: "name") as! String?;
-            let expiryMonth: String? = data.value(forKey: "expiryMonth") as! String?;
-            let expiryYear: String? = data.value(forKey: "expiryYear") as! String?;
-            let cvv: String? = data.value(forKey: "cvv") as! String?;
+            let card: String? = data.value(forKey: "card") as? String;
+            let name: String? = data.value(forKey: "name") as? String;
+            let expiryMonth: String? = data.value(forKey: "expiryMonth") as? String;
+            let expiryYear: String? = data.value(forKey: "expiryYear") as? String;
+            let cvv: String? = data.value(forKey: "cvv") as? String;
             
             if let card = card,
-                let name = name,
                 let expiryMonth = expiryMonth,
                 let expiryYear = expiryYear,
                 let cvv = cvv {
