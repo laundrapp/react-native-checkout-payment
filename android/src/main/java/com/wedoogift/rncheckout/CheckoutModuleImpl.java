@@ -45,6 +45,7 @@ public class CheckoutModuleImpl extends ReactContextBaseJavaModule implements Ch
                     return;
                 }
                 pendingTokenisationPromise.resolve(CheckoutTools.convertResponseToMap(response));
+                pendingTokenisationPromise = null;
             }
 
             @Override
@@ -56,6 +57,7 @@ public class CheckoutModuleImpl extends ReactContextBaseJavaModule implements Ch
                 }
                 pendingTokenisationPromise.reject("CHECKOUT" + error.getErrorCode(),
                         error.getMessage());
+                pendingTokenisationPromise = null;
             }
 
             @Override
