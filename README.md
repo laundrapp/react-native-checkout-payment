@@ -24,7 +24,7 @@ Before doing anything with the module, **you must
 initialize it** with your public key and the environment type:
 
 ```javascript
-import CheckoutModule from '@wedoogift/react-native-checkout-payment';
+import { CheckoutModule } from '@wedoogift/react-native-checkout-payment';
 
 CheckoutModule.initialize('ck_test_foobar', 'sandbox') 
     // or 'live' instead of 'sandbox' for production env.
@@ -35,7 +35,7 @@ CheckoutModule.initialize('ck_test_foobar', 'sandbox')
 
 Then, you can start generating card tokens to make payments:
 ```javascript
-import CheckoutModule from '@wedoogift/react-native-checkout-payment';
+import { CheckoutModule } from '@wedoogift/react-native-checkout-payment';
 
 CheckoutModule.generateToken({
     card: '4242424242424242',
