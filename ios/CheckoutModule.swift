@@ -49,12 +49,17 @@ class CheckoutModule: NSObject {
             let expiryYear: String? = data.value(forKey: "expiryYear") as? String;
             let cvv: String? = data.value(forKey: "cvv") as? String;
             
+            var billingDetails: CkoAddress?
+            if let postcode = data.value(forKey: "postcode") as? String{
+                billingDetails = CkoAddress(postcode: postcode)
+            }
+            
             if let card = card,
                 let expiryMonth = expiryMonth,
                 let expiryYear = expiryYear,
                 let cvv = cvv {
                 checkoutApi!.createCardToken(
-                    card: CkoCardTokenRequest(number: card, expiryMonth: expiryMonth, expiryYear: expiryYear, cvv: cvv, name: name),
+                    card: CkoCardTokenRequest(number: card, expiryMonth: expiryMonth, expiryYear: expiryYear, cvv: cvv, name: name, billingDetails: billingDetails),
                     successHandler: {(response) in
                         resolve([
                             "id": response.id,
@@ -72,7 +77,8 @@ class CheckoutModule: NSObject {
                             ])
                 },
                     errorHandler: {(errorResponse) in
-                        reject("CHECKOUT" + errorResponse.errorCode, errorResponse.message, nil)
+                        let errors = errorResponse.errors?.joined(separator: ",") ?? ""
+                        reject("CHECKOUT" + errorResponse.errorCode, errorResponse.message + " [\(errors)]", nil)
                 }
                 )
             } else {
