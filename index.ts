@@ -11,6 +11,7 @@ export interface CardTokenisationRequest {
   expiryMonth: string; // With always two digits.
   expiryYear: string; // With always two digits.
   cvv: string;
+  postcode: string;
 }
 
 export interface CardTokenisationResponse {
