@@ -77,8 +77,8 @@ class CheckoutModule: NSObject {
                             ])
                 },
                     errorHandler: {(errorResponse) in
-                        let errors = errorResponse.errors?.joined(separator: ",") ?? ""
-                        reject("CHECKOUT" + errorResponse.errorCode, errorResponse.message + " [\(errors)]", nil)
+                        let errors = errorResponse.errors?.joined(separator: "\n") ?? ""
+                        reject("CHECKOUT" + errorResponse.errorCode, errorResponse.message + "\(errors)", nil)
                 }
                 )
             } else {
