@@ -55,8 +55,16 @@ public class CheckoutModuleImpl extends ReactContextBaseJavaModule implements Ch
                             "Received CardTokenisationFail while no tokenisation is pending.");
                     return;
                 }
-                pendingTokenisationPromise.reject("CHECKOUT" + error.getErrorCode(),
-                        error.getMessage());
+                if (error.getErrors() != null){
+                    StringBuilder builder = new StringBuilder();
+                    for(String s : error.getErrors()) {
+                      builder.append("\n" + s);
+                    }
+                    String str = builder.toString();
+                    pendingTokenisationPromise.reject("CHECKOUT" + error.getErrorCode() ,error.getMessage() + str);
+                } else {
+                    pendingTokenisationPromise.reject("CHECKOUT" + error.getErrorCode(),error.getMessage());
+                }
                 pendingTokenisationPromise = null;
             }
 
