@@ -5,6 +5,7 @@ import android.util.Log;
 import com.android.volley.VolleyError;
 import com.checkout.android_sdk.CheckoutAPIClient;
 import com.checkout.android_sdk.Request.CardTokenisationRequest;
+import com.checkout.android_sdk.Models.BillingModel;
 import com.checkout.android_sdk.Response.CardTokenisationFail;
 import com.checkout.android_sdk.Response.CardTokenisationResponse;
 import com.checkout.android_sdk.Utils.Environment;
