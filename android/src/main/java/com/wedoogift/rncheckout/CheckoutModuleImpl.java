@@ -128,12 +128,17 @@ public class CheckoutModuleImpl extends ReactContextBaseJavaModule implements Ch
         }
 
         pendingTokenisationPromise = returnValue;
+        BillingModel billing = null;
+        if (data.getString(POSTCODE) != null) {
+            billing = new BillingModel("", "", data.getString(POSTCODE), "", "", "", null);
+        }
         checkoutClient.generateToken(new CardTokenisationRequest(
-                data.getString(CARD_NUMBERS_KEY),
-                data.hasKey(CARD_NAME) ? data.getString(CARD_NAME) : null,
-                data.getString(CARD_EXPIRATION_MONTH),
-                data.getString(CARD_EXPIRATION_YEAR),
-                data.getString(CARD_EXPIRATION_CVV)
+        data.getString(CARD_NUMBERS_KEY),
+        data.hasKey(CARD_NAME) ? data.getString(CARD_NAME) : null,
+        data.getString(CARD_EXPIRATION_MONTH),
+        data.getString(CARD_EXPIRATION_YEAR),
+        data.getString(CARD_EXPIRATION_CVV),
+        billing
         ));
     }
 }
