@@ -32,6 +32,7 @@ public class CheckoutModuleImpl extends ReactContextBaseJavaModule implements Ch
     private final static String CARD_EXPIRATION_MONTH = "expiryMonth";
     private final static String CARD_EXPIRATION_YEAR = "expiryYear";
     private final static String CARD_EXPIRATION_CVV = "cvv";
+    private final static String POSTCODE = "postcode";
 
     CheckoutModuleImpl(@Nonnull ReactApplicationContext reactContext) {
         super(reactContext);
